@@ -2,6 +2,7 @@
   "name": "quiz-web",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ainthacker.github.io/simple-web-page",
   "dependencies": {
     "cra-template-pwa-typescript": "2.0.0",
     "react": "^19.1.0",
