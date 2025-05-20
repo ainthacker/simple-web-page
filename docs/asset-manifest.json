@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/simple-web-page/static/css/main.e6c13ad2.css",
+    "main.js": "/simple-web-page/static/js/main.eebd959b.js",
+    "service-worker.js": "/simple-web-page/service-worker.js",
+    "index.html": "/simple-web-page/index.html",
+    "main.e6c13ad2.css.map": "/simple-web-page/static/css/main.e6c13ad2.css.map",
+    "main.eebd959b.js.map": "/simple-web-page/static/js/main.eebd959b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.eebd959b.js"
+  ]
+}
