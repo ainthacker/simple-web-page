@@ -451,11 +451,27 @@
             });
         }
         
-        function saveNotes() {
+        async function saveNotes() {
             const notes = document.getElementById('notesTextarea').value;
             if (notes.trim()) {
-                localStorage.setItem('pokemonNotes', notes);
-                showStatus('Notes saved successfully!');
+                try {
+                    const response = await fetch('/api/notes', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ notes: notes })
+                    });
+                    
+                    const result = await response.json();
+                    if (result.success) {
+                        showStatus('✅ Notes saved to server!');
+                    } else {
+                        showStatus('❌ Failed to save notes: ' + result.message);
+                    }
+                } catch (error) {
+                    showStatus('❌ Server error: ' + error.message);
+                }
             } else {
                 showStatus('Please enter some notes to save.');
             }
@@ -472,10 +488,16 @@
         }
         
         // Load saved notes on page load
-        window.addEventListener('load', () => {
-            const savedNotes = localStorage.getItem('pokemonNotes');
-            if (savedNotes) {
-                document.getElementById('notesTextarea').value = savedNotes;
+        window.addEventListener('load', async () => {
+            try {
+                const response = await fetch('/api/notes');
+                const data = await response.json();
+                if (data.notes) {
+                    document.getElementById('notesTextarea').value = data.notes;
+                    showStatus('📄 Notes loaded from server!');
+                }
+            } catch (error) {
+                console.log('No saved notes found or server error:', error);
             }
         });
         
